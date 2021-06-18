@@ -1,4 +1,5 @@
-from src.informacion import create_files, export_information, print_info, csv_file
+from .informacion import create_files, export_information, print_info, csv_file
+
 
 class Calculos:
 
@@ -13,19 +14,15 @@ class Calculos:
         cf = create_files(fichero)
         export_information(cf)
 
-    def calculadora(self, rango: str = 'infinito') -> None:
+    def calculadora(self, rango: bool = True) -> None:
         '''
-        Crea ficheros .txt con los numeros primos comprendidos entre inicio y final. Cada fichero .txt tendra un rango desde inicio a inicio+incremento
-        :param inicio: Numero por el que comienza a buscar los numeros primos
-        :param final:  Ultimo numero que comprueba si es primo
-        :param incremento: Rango de numeros que se introducira en el fichero
-        :return: Fichero .txt con los numeros primos
+        Establece el rango de calculos. False indica que el rango es infinito. True calcula con los limites establecidos
         '''
-        if rango == 'rango':
+        if rango:
             while (self.inicio < self.final):
                 self.calc()
                 self.inicio += self.incremento
-        elif rango == 'infinito':
+        else:
             while (True):
                 self.calc()
                 self.inicio += self.incremento
@@ -33,11 +30,8 @@ class Calculos:
     def continuar_calculos(self) -> None:
         '''
         Calcula los numeros primos a partir del ultimo rango que hay en el fichero
-        :param final:  Ultimo numero que comprueba si es primo
-        :param incremento: Rango de numeros que se introducira en el fichero
-        :return:
         '''
-        file = open(csv_file)
+        file = open(csv_file, 'r')
         for e in file:
             cont = e.rstrip().split(';')
             if cont[1].isdigit():

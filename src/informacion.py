@@ -1,8 +1,8 @@
 import datetime
 import time
 import os
-from src.primos import listaPrimos
-
+from .primos import listaPrimos
+import os
 path_files = 'Primos'
 csv_file = os.path.join(path_files, 'Informacion.csv')
 
@@ -15,7 +15,7 @@ def write_primes(archivo, datos) -> None:
     :return:
     '''
     fichero = os.path.join(path_files, archivo)
-    file = open(fichero,'w')
+    file = open(fichero, 'w')
     for e in datos:
         file.write(f'{e} ')
     file.close()
@@ -36,7 +36,7 @@ def create_files(range_title) -> dict:
     b = time.time()
     write_primes(archivo, lista)
     duracion = str(float(b - a))
-    return {"Rango": range_title, "Numero de primos": len(lista), "Duracion": duracion}
+    return {"Rango": range_title, "Primos": len(lista), "Duracion": duracion}
 
 
 def print_info(fichero) -> None:
@@ -69,7 +69,7 @@ def resume() -> None:
             nFin = cont[0].split('-')[1]
 
     print(
-        f'Inicio: {nInicio}\nFin: {nFin}\nNº lineas: {nLineas}\nNumeros primos: {nPrimos}\nDuracion: {duracionS} seg.\t ({datetime.timedelta(seconds=duracionS)})')
+        f'Inicio: {nInicio}\nFin: {nFin}\nNº lineas: {nLineas}\nPrimos: {nPrimos}\nDuracion: {duracionS} seg.\t ({datetime.timedelta(seconds=duracionS)})')
 
 
 def export_information(datos) -> None:
@@ -79,5 +79,6 @@ def export_information(datos) -> None:
     :return:
     '''
     file = open(csv_file, "a")
-    file.write(f"\n{datos['Rango']};{datos['Numerodeprimos']};{datos['Duracion']}")
+    file.write(
+        f"\n{datos['Rango']};{datos['Primos']};{datos['Duracion']}")
     file.close()
