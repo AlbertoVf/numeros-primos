@@ -2,9 +2,7 @@ import datetime
 import time
 import os
 from .primos import listaPrimos
-import os
-path_files = 'Primos'
-csv_file = os.path.join(path_files, 'Informacion.csv')
+from .conf import path_files, csv_file
 
 
 def write_primes(archivo, datos) -> None:

@@ -1,4 +1,4 @@
-from .informacion import create_files, export_information, print_info, csv_file
+from .informacion import create_files, export_information, print_info
 
 
 class Calculos:
@@ -26,17 +26,3 @@ class Calculos:
             while (True):
                 self.calc()
                 self.inicio += self.incremento
-
-    def continuar_calculos(self) -> None:
-        '''
-        Calcula los numeros primos a partir del ultimo rango que hay en el fichero
-        '''
-        file = open(csv_file, 'r')
-        for e in file:
-            cont = e.rstrip().split(';')
-            if cont[1].isdigit():
-                i = cont[0].split('-')[1]
-        i = int(i)
-        while (i < self.final):
-            self.calc()
-            i += self.incremento

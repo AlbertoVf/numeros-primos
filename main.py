@@ -1,10 +1,6 @@
 from src.calculos import Calculos
-
+from src.conf import inicio, final, incremento
 
 if __name__ == '__main__':
-    c = Calculos(
-        inicio=0,
-        final=100 * 1000 * 1000,
-        incremento=1000 * 1000
-    )
-    c.calculadora(rango=True)
+    c = Calculos(inicio, final, incremento)
+    c.calculadora(rango=False)
