@@ -31,10 +31,10 @@ def create_files(range_title) -> dict:
     archivo = f"primos-{range_start}-{range_end}.txt"
     a = time.time()
     lista = listaPrimos(int(range_start), int(range_end))
-    b = time.time()
     write_primes(archivo, lista)
-    duracion = str(float(b - a))
-    return {"Rango": range_title, "Primos": len(lista), "Duracion": duracion}
+    duracion = round(time.time() - a, 5)
+    l = len(lista)
+    return {"Rango": range_title, "Primos": l, "Duracion": duracion}
 
 
 def print_info(fichero) -> None:
@@ -78,5 +78,5 @@ def export_information(datos) -> None:
     '''
     file = open(csv_file, "a")
     file.write(
-        f"\n{datos['Rango']};{datos['Primos']};{datos['Duracion']}")
+        f"{datos['Rango']};{datos['Primos']};{datos['Duracion']}\n")
     file.close()

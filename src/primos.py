@@ -8,7 +8,7 @@ def esPrimo(n) -> bool:
     :return: True o False dependiendo de si es primo
     '''
     nPrimos = 0
-    for i in range(1, int(math.sqrt(n) + 1)):
+    for i in range(1, math.ceil(math.sqrt(n))):
         if n % i == 0:
             nPrimos += 1
             if nPrimos > 1:
