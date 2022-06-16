@@ -1,8 +1,9 @@
 import datetime
-import time
 import os
-from .primos import listaPrimos
+import time
+
 from .conf import path_files, csv_file
+from .primos import listaPrimos
 
 
 def write_primes(archivo, datos) -> None:

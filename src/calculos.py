@@ -15,14 +15,14 @@ class Calculos:
         export_information(cf)
 
     def calculadora(self, rango: bool = True) -> None:
-        '''
-        Establece el rango de calculos. False indica que el rango es infinito. True calcula con los limites establecidos
-        '''
+        """
+            Establece el rango de calculos. False indica que el rango es infinito. True calcula con los limites establecidos
+        """
         if rango:
-            while (self.inicio < self.final):
+            while self.inicio < self.final:
                 self.calc()
                 self.inicio += self.incremento
         else:
-            while (True):
+            while True:
                 self.calc()
                 self.inicio += self.incremento
