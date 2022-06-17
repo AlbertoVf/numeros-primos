@@ -3,7 +3,6 @@ all: run compress_data build get_information
 
 .PHONY: run
 run:
-
 	@echo "Start calculate"
 	python main.py
 	@echo "Calculate done"
