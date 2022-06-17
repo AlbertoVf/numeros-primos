@@ -8,11 +8,15 @@ from src.save_information import path_files, export_information, write_primes
 
 class RangeOfNumbers:
     data = Data()
+    _increment = 1 * 1000 * 1000
+
+    @staticmethod
+    def get_increment():
+        return RangeOfNumbers._increment
 
     def __init__(self, start: int = 0, final: int = None):
-        self.increment = 1 * 1000 * 1000
         self.start = start
-        self.final = final if final else start + self.increment
+        self.final = final if final else start + self.get_increment()
         self.file = f'{self.start}-{self.final}'
 
     def calculate(self):

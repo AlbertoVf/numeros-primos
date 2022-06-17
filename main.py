@@ -2,10 +2,30 @@ import json
 
 from src.rangeofnumbers import RangeOfNumbers
 
-if __name__ == '__main__':
+r = RangeOfNumbers.get_increment()
+
+
+def start_calculate_json():
     with open("data.json", "r") as file:
         data = json.load(file)
+    calculate_n_ranges(data['start'], data['ranges_to_calculate'])
 
-    c = RangeOfNumbers(data["start"], data["end"])
-    c.calculate()
-    # 0 1 2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67 71 73 79 83 89 97
+
+def calculate_n_ranges(start: int, ranges_to_calculate: int):
+    for i in range(start, ranges_to_calculate + start):
+        c = RangeOfNumbers(i * r)
+        print(c)
+        c.calculate()
+
+
+def calculate_all_ranges():
+    i = 0
+    while True:
+        c = RangeOfNumbers(i * r)
+        print(c)
+        c.calculate()
+        i += 1
+
+
+if __name__ == '__main__':
+    start_calculate_json()
