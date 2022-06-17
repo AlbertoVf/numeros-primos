@@ -16,8 +16,11 @@ compress_data:
 .PHONY: read_data
 read_data:
 	@bat Primos/Informacion.csv
-	start_calculate
 
 .PHONY: install_requirements
 install_requirements:
 	pip install -r requirements.txt
+
+.PHONY: get_information
+get_information:
+	@python -c 'from src.save_information import read_information; read_information()' | bat -l "json"

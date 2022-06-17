@@ -26,3 +26,34 @@ def export_information(data: Data):
     """
     with open(csv_file, "a") as file:
         file.write(f"{data.__str__()}\n")
+
+
+def read_information():
+    import datetime
+
+    """
+    Read information from csv file
+    :return: Information
+    """
+    dat: [Data] = []
+    with open(f'{csv_file}', "r") as file:
+        lines = file.readlines()
+
+    for l in lines[1:]:
+        dat.append(Data(l.split(';')[0], int(l.split(';')[1]), float(l.split(';')[2])))
+
+    primos = 0
+    tiempo = 0
+
+    for d in dat:
+        primos += d.number_of_primes
+        tiempo += d.duration
+
+    info = {
+        'rangos': len(dat),
+        'primos': primos,
+        'tiempo': str(datetime.timedelta(seconds=tiempo))
+    }
+    print(info)
+
+# read_information()
