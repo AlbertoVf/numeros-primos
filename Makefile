@@ -1,11 +1,14 @@
 .PHONY: all
-all: start_calculate compress_data read_data install_requirements
+all: run compress_data build get_information
 
-.PHONY: start_calculate
-start_calculate:
+.PHONY: run
+run:
+
 	@echo "Start calculate"
 	python main.py
 	@echo "Calculate done"
+	@git add Primos/Informacion.csv data.json
+	@git commit -m "docs(numbers): Calculate new ranges"
 
 .PHONY: compress_data
 compress_data:
@@ -13,14 +16,12 @@ compress_data:
 	zip -r Primos.zip Primos
 	@echo "Compress done"
 
-.PHONY: read_data
-read_data:
-	@bat Primos/Informacion.csv
-
-.PHONY: install_requirements
-install_requirements:
+.PHONY: build
+build:
 	pip install -r requirements.txt
 
 .PHONY: get_information
 get_information:
-	@python -c 'from src.save_information import read_information; read_information()' | bat -l "json"
+	@python -c 'from src.save_information import read_information; read_information()' > info.json
+	@bat  info.json Primos/Informacion.csv
+	rm info.json
