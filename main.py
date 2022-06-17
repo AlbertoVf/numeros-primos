@@ -1,6 +1,7 @@
 import json
 
 from src.rangeofnumbers import RangeOfNumbers
+from src.save_information import csv_file
 
 r = RangeOfNumbers.get_increment()
 
@@ -12,10 +13,13 @@ def start_calculate_json():
 
 
 def calculate_n_ranges(start: int, ranges_to_calculate: int):
-    for i in range(start, ranges_to_calculate + start):
-        c = RangeOfNumbers(i * r)
+    ran = 0
+
+    while ran < ranges_to_calculate:
+        c = RangeOfNumbers(start + ran * r)
         print(c)
         c.calculate()
+        ran += 1
 
 
 def calculate_all_ranges():
@@ -27,5 +31,27 @@ def calculate_all_ranges():
         i += 1
 
 
+def update_data_json():
+    start = 0
+    ranges = 100
+    try:
+        with open("data.json", "r") as f:
+            ranges = int(json.load(f)['ranges_to_calculate'])
+        with open(f'{csv_file}', "r") as file:
+            last_line = file.readlines()[-1]
+            start = int(last_line.split(';')[0].split('-')[1])
+    except Exception:
+        return
+    finally:
+        json_conf = {
+            'start'              : start,
+            'ranges_to_calculate': ranges
+        }
+        with open('data.json', 'w') as f:
+            json.dump(json_conf, f, indent=2)
+
+
 if __name__ == '__main__':
+    update_data_json()
     start_calculate_json()
+    update_data_json()
