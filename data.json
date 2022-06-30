@@ -1,4 +1,4 @@
 {
-  "start": 200000000,
-  "ranges_to_calculate": 10000
+  "start": 6999000000,
+  "ranges_to_calculate": 250
 }
